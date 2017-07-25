@@ -21,13 +21,13 @@ for(var i = 0; i < Image.allNames.length; i++) {
   new Image(Image.allNames[i]);
 }
 
-Image.imgEl1 = document.getElementById('image1');
-Image.imgEl2 = document.getElementById('image2');
-Image.imgEl3 = document.getElementById('image3');
+Image.image1Img = document.getElementById('image1');
+Image.image2Img = document.getElementById('image2');
+Image.image3Img = document.getElementById('image3');
 Image.container = document.getElementById('products');
 
 function makeRandomNumber(){
-  return Math.floor(Math.random() * Image.all.length)
+  return Math.floor(Math.random() * Image.all.length);
 }
 
 
@@ -48,12 +48,17 @@ function displayImages() {
     numbers[2] = makeRandomNumber();
 
   }
-  Image.imgEl1.src = Image.all[numbers[0]].source;
-  Image.imgEl2.src = Image.all[numbers[1]].source;
-  Image.imgEl3.src = Image.all[numbers[2]].source;
+
+  Image.image1Img.src = Image.all[numbers[0]].source;
+  Image.image2Img.src = Image.all[numbers[1]].source;
+  Image.image3Img.src = Image.all[numbers[2]].source;
+  Image.image1Img.alt = Image.all[numbers[0]].name;
+  Image.image2Img.alt = Image.all[numbers[1]].name;
+  Image.image3Img.alt = Image.all[numbers[2]].name;
   Image.all[numbers[0]].timesShown += 1;
   Image.all[numbers[1]].timesShown += 1;
   Image.all[numbers[2]].timesShown += 1;
+
   console.log(numbers, 'currently showing');
   previouslyShown = numbers;
 }
@@ -68,28 +73,29 @@ function showList(){
   }
 }
 
+
 function handleClick(e) {
   Image.totalClicks += 1;
-
   console.log(Image.totalClicks, 'total clicks');
-
   for(var i = 0; i < Image.all.length; i++){
     if(e.target.alt === Image.all[i].name){
+
       Image.all[i].timesClicked += 1;
     }
   }
-  if(Image.totalClicks === 3) {
+
+  displayImages();
+  if(Image.totalClicks === 25) {
+
     Image.container.removeEventListener('click', handleClick);
 
     showList();
   }
 
-
-  displayImages();
 }
+Image.container.addEventListener('click', handleClick);
 displayImages();
 
-Image.container.addEventListener('click', handleClick)
 
 
 
