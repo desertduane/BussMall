@@ -24,6 +24,8 @@ Image.imgEl2 = document.getElementById('image2');
 Image.imgEl3 = document.getElementById('image3');
 
 
+
+
 function randomImage() {
   var randomIndex = Math.floor(Math.random() * Image.all.length);
   Image.imgEl1.src = Image.all[randomIndex].source;
@@ -32,6 +34,7 @@ function randomImage() {
 
   console.log(Image.all[randomIndex].name + 'has been shown ' + Image.all[randomIndex].timesShown + ' times');
 
+duplicatePreventer();
 }
 
 function randomImage2() {
@@ -43,6 +46,7 @@ function randomImage2() {
 
   console.log(Image.all[randomIndex].name + 'has been shown ' + Image.all[randomIndex].timesShown + ' times');
 
+duplicatePreventer();
 }
 function randomImage3() {
 
@@ -53,29 +57,36 @@ function randomImage3() {
 
   console.log(Image.all[randomIndex].name + 'has been shown ' + Image.all[randomIndex].timesShown + ' times');
 
-
+duplicatePreventer();
 }
-function addClickOne() {
-  timesClicked1 += 1;
-  console.log('img1 clicked ' + timesClicked1 + ' times');
+function duplicatePreventer() {
+  if(Image.imgEl1.src === Image.imgEl2.src || Image.imgEl1.src === Image.imgEl3.src){
+    randomImage();
+    console.log('re-rolled');
+  }else if(Image.imgEl2.src === Image.imgEl3.src){
+    randomImage2();
+    console.log('re-rolled');
+  }
 }
-function addClickTwo() {
-  timesClicked2 += 1;
-  console.log('img2 clicked ' + timesClicked2 + ' times');
-}
-function addClickThree() {
-  timesClicked3 += 1;
-  console.log('img3 clicked ' + timesClicked3 + ' times');
-}
-
-
 document.getElementById('products').addEventListener('click', randomImage);
 document.getElementById('products').addEventListener('click', randomImage2);
 document.getElementById('products').addEventListener('click', randomImage3);
-document.getElementById('image1').addEventListener('click', addClickOne);
-document.getElementById('image2').addEventListener('click', addClickTwo);
-document.getElementById('image3').addEventListener('click', addClickThree);
 
-randomImage();
-randomImage2();
-randomImage3();
+
+// function addClickOne() {
+//   timesClicked1 += 1;
+//   console.log('img1 clicked ' + timesClicked1 + ' times');
+// }
+// function addClickTwo() {
+//   timesClicked2 += 1;
+//   console.log('img2 clicked ' + timesClicked2 + ' times');
+// }
+// function addClickThree() {
+//   timesClicked3 += 1;
+//   console.log('img3 clicked ' + timesClicked3 + ' times');
+// }
+
+
+// document.getElementById('image1').addEventListener('click', addClickOne);
+// document.getElementById('image2').addEventListener('click', addClickTwo);
+// document.getElementById('image3').addEventListener('click', addClickThree);
