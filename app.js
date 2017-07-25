@@ -30,11 +30,11 @@ var randomImage = function () {
   var randomIndex = Math.floor(Math.random() * Image.all.length);
   Image.imgEl1.src = Image.all[randomIndex].source;
   Image.imgEl1.alt = Image.all[randomIndex].name;
+  duplicatePreventer();
   Image.all[randomIndex].timesShown += 1;
 
   console.log(Image.all[randomIndex].name + 'has been shown ' + Image.all[randomIndex].timesShown + ' times');
 
-duplicatePreventer();
 }
 
 var randomImage2 = function () {
@@ -42,22 +42,22 @@ var randomImage2 = function () {
   var randomIndex = Math.floor(Math.random() * Image.all.length);
   Image.imgEl2.src = Image.all[randomIndex].source;
   Image.imgEl2.alt = Image.all[randomIndex].name;
+  duplicatePreventer();
   Image.all[randomIndex].timesShown += 1;
 
   console.log(Image.all[randomIndex].name + 'has been shown ' + Image.all[randomIndex].timesShown + ' times');
 
-duplicatePreventer();
 }
 var randomImage3 = function () {
 
   var randomIndex = Math.floor(Math.random() * Image.all.length);
   Image.imgEl3.src = Image.all[randomIndex].source;
   Image.imgEl3.alt = Image.all[randomIndex].name;
+  duplicatePreventer();
   Image.all[randomIndex].timesShown += 1;
 
   console.log(Image.all[randomIndex].name + 'has been shown ' + Image.all[randomIndex].timesShown + ' times');
 
-duplicatePreventer();
 }
 function duplicatePreventer() {
   if(Image.imgEl1.src === Image.imgEl2.src || Image.imgEl1.src === Image.imgEl3.src){
