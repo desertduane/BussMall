@@ -1,8 +1,8 @@
 'use strict'
 
-var timesClicked1 = 0;
-var timesClicked2 = 0;
-var timesClicked3 = 0;
+// var timesClicked1 = 0;
+// var timesClicked2 = 0;
+// var timesClicked3 = 0;
 
 function Image(number) {
   this.name = number;
@@ -35,7 +35,7 @@ var randomImage = function () {
 
   console.log(Image.all[randomIndex].name + 'has been shown ' + Image.all[randomIndex].timesShown + ' times');
 
-}
+};
 
 var randomImage2 = function () {
 
@@ -47,7 +47,7 @@ var randomImage2 = function () {
 
   console.log(Image.all[randomIndex].name + 'has been shown ' + Image.all[randomIndex].timesShown + ' times');
 
-}
+};
 var randomImage3 = function () {
 
   var randomIndex = Math.floor(Math.random() * Image.all.length);
@@ -58,7 +58,7 @@ var randomImage3 = function () {
 
   console.log(Image.all[randomIndex].name + 'has been shown ' + Image.all[randomIndex].timesShown + ' times');
 
-}
+};
 function duplicatePreventer() {
   if(Image.imgEl1.src === Image.imgEl2.src || Image.imgEl1.src === Image.imgEl3.src){
     randomImage();
