@@ -26,7 +26,7 @@ Image.imgEl3 = document.getElementById('image3');
 
 
 
-function randomImage() {
+var randomImage = function () {
   var randomIndex = Math.floor(Math.random() * Image.all.length);
   Image.imgEl1.src = Image.all[randomIndex].source;
   Image.imgEl1.alt = Image.all[randomIndex].name;
@@ -37,7 +37,7 @@ function randomImage() {
 duplicatePreventer();
 }
 
-function randomImage2() {
+var randomImage2 = function () {
 
   var randomIndex = Math.floor(Math.random() * Image.all.length);
   Image.imgEl2.src = Image.all[randomIndex].source;
@@ -48,7 +48,7 @@ function randomImage2() {
 
 duplicatePreventer();
 }
-function randomImage3() {
+var randomImage3 = function () {
 
   var randomIndex = Math.floor(Math.random() * Image.all.length);
   Image.imgEl3.src = Image.all[randomIndex].source;
@@ -68,9 +68,15 @@ function duplicatePreventer() {
     console.log('re-rolled');
   }
 }
-document.getElementById('products').addEventListener('click', randomImage);
-document.getElementById('products').addEventListener('click', randomImage2);
-document.getElementById('products').addEventListener('click', randomImage3);
+function getRandomImages() {
+  randomImage();
+  randomImage2();
+  randomImage3();
+}
+
+document.getElementById('products').addEventListener('click', getRandomImages);
+// document.getElementById('products').addEventListener('click', randomImage2);
+// document.getElementById('products').addEventListener('click', randomImage3);
 
 
 // function addClickOne() {
