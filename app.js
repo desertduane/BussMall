@@ -177,8 +177,7 @@ var data = {
     });
   }
   Image.container.addEventListener('click', handleClick);
-    displayImages();
-
+  displayImages();
 
 
 
