@@ -1,6 +1,5 @@
 'use strict'
 
-
 function Image(number) {
   this.name = number;
   this.source = 'images/' + number + '.jpg';
@@ -45,12 +44,12 @@ function displayImages() {
   numbers[1] = makeRandomNumber();
 
   while(numbers[0] === numbers[1]){
-    console.log('doup found');
+    console.log('Double Found');
     numbers[1] = makeRandomNumber();
   }
   numbers[2] = makeRandomNumber();
   while(numbers[2] === numbers[1] || numbers[2] === numbers[0]){
-    console.log('doup found');
+    console.log('Double Found');
     numbers[2] = makeRandomNumber();
 
   }
@@ -71,8 +70,6 @@ function displayImages() {
   previouslyShown = numbers;
 }
 
-
-
 function handleClick(e) {
   Image.totalClicks += 1;
   console.log(Image.totalClicks, 'total clicks');
@@ -85,7 +82,7 @@ function handleClick(e) {
   }
 
   displayImages();
-  if(Image.totalClicks === 25) {
+  if(Image.totalClicks === 5) {
     localStorage.surveyData = JSON.stringify(Image.all);
 
     updateChartArrays();
@@ -97,7 +94,6 @@ function handleClick(e) {
     return drawChart();
   }
 }
-
 
 var data = {
   labels: titles,
@@ -192,7 +188,10 @@ Image.image1Img.addEventListener('click', handleClick);
 Image.image2Img.addEventListener('click', handleClick);
 Image.image3Img.addEventListener('click', handleClick);
 
-
+function clearStorage() {
+  localStorage.clear();
+}
+document.getElementById('button').addEventListener('click', clearStorage);
 
 
 
