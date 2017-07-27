@@ -86,9 +86,14 @@ function handleClick(e) {
 
   displayImages();
   if(Image.totalClicks === 25) {
+    localStorage.surveyData = JSON.stringify(Image.all);
 
-    Image.container.removeEventListener('click', handleClick);
-    // showList();
+    updateChartArrays();
+
+    Image.image1Img.removeEventListener('click', handleClick);
+    Image.image2Img.removeEventListener('click', handleClick);
+    Image.image3Img.removeEventListener('click', handleClick);
+
     return drawChart();
   }
 }
@@ -144,40 +149,49 @@ var data = {
         'purple'
       ]
     }]
-  };
+};
 
-  function drawChart() {
-    var ctx = document.getElementById('mallChart').getContext('2d');
-    mallChart = new Chart(ctx,{
-      type: 'horizontalBar',
-      data: data,
-      options: {
-        title: {
-          display: true,
-          text: 'Product Popularity'
-        },
-        legend: {
-          display: false,
-          responsive: false,
-          animation: {
-            duration: 600,
-            easing: 'easeOutBounce'
-          }
-        }
+function drawChart() {
+  var ctx = document.getElementById('mallChart').getContext('2d');
+  mallChart = new Chart(ctx,{
+    type: 'horizontalBar',
+    data: data,
+    options: {
+      title: {
+        display: true,
+        text: 'Product Popularity'
       },
-      scales: {
-        yAxes: [{
-          ticks: {
-            max: 10,
-            min: 0,
-            stepSize: 1.0
-          }
-        }]
+      legend: {
+        display: false,
+        responsive: false,
+        animation: {
+          duration: 600,
+          easing: 'easeOutBounce'
+        }
       }
-    });
-  }
-  Image.container.addEventListener('click', handleClick);
-    displayImages();
+    },
+    scales: {
+      yAxes: [{
+        ticks: {
+          max: 10,
+          min: 0,
+          stepSize: 1.0
+        }
+      }]
+    }
+  });
+}
+if(localStorage.surveyData) {
+  console.log('there is survey data');
+  Image.all = JSON.parse(localStorage.surveyData);
+}else{
+  console.log('no survey data');
+}
+displayImages();
+Image.image1Img.addEventListener('click', handleClick);
+Image.image2Img.addEventListener('click', handleClick);
+Image.image3Img.addEventListener('click', handleClick);
+
 
 
 

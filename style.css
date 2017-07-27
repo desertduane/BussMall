@@ -1,3 +1,7 @@
 img{
   width: 200px;
+  border-style: solid;
+}
+section{
+  border-style: solid;
 }
