@@ -1,7 +1,39 @@
-img{
-  width: 200px;
-  border-style: solid;
+body{
+  background-color: #221ccc;
 }
-section{
+h1{
+  text-decoration: underline;
+  font-family: sans-serif;
+  font-size: 60px;
+  color:#437c1d;
+  text-align: center;
+}
+p{
+  color: white;
+  font-size: 20px;
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+  margin-bottom: 20px;
   border-style: solid;
+  border-radius: 10px;
+  border-color: #82f8ff;
+}
+img{
+  border-width: thick;
+  width: 200px;
+  height: 200px;
+  border-style: solid;
+  border-radius: 10px;
+  border-color: #82f8ff;
+}
+
+section{
+  border-radius: 10px;
+  background-color: #437c1d;
+  margin: auto;
+  max-width: 640px;
+}
+canvas{
+  color: white;
 }

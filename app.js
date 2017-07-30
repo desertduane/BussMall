@@ -82,10 +82,10 @@ function handleClick(e) {
   }
 
   displayImages();
-  if(Image.totalClicks === 5) {
+  if(Image.totalClicks === 25) {
     localStorage.surveyData = JSON.stringify(Image.all);
 
-    updateChartArrays();
+    // updateChartArrays();
 
     Image.image1Img.removeEventListener('click', handleClick);
     Image.image2Img.removeEventListener('click', handleClick);
@@ -105,22 +105,22 @@ var data = {
         'darkgray',
         'burlywood',
         'lightblue',
-        'navy',
+        'white',
         'bisque',
         'darkgray',
         'burlywood',
         'lightblue',
-        'navy',
+        'white',
         'bisque',
         'darkgray',
         'burlywood',
         'lightblue',
-        'navy',
+        'white',
         'bisque',
         'darkgray',
         'burlywood',
         'lightblue',
-        'navy'
+        'white'
       ],
       hoverBackgroundColor: [
         'purple',
@@ -150,10 +150,12 @@ var data = {
 function drawChart() {
   var ctx = document.getElementById('mallChart').getContext('2d');
   mallChart = new Chart(ctx,{
-    type: 'horizontalBar',
+
+    type: 'bar',
     data: data,
     options: {
       title: {
+        fontColor: 'white',
         display: true,
         text: 'Product Popularity'
       },
@@ -161,7 +163,7 @@ function drawChart() {
         display: false,
         responsive: false,
         animation: {
-          duration: 600,
+          duration: 800,
           easing: 'easeOutBounce'
         }
       }
@@ -192,17 +194,3 @@ function clearStorage() {
   localStorage.clear();
 }
 document.getElementById('button').addEventListener('click', clearStorage);
-
-
-
-  // function showList(){
-  //   var ulEl = document.getElementById('thelist');
-  //   for(var i = 0; i < Image.all.length; i++){
-  //
-  //     var liEl = document.createElement('li');
-  //     liEl.textContent = Image.all[i].name + ' was shown ' + Image.all[i].timesShown + ' times and was clicked ' + Image.all[i].timesClicked + ' times.';
-  //     ulEl.appendChild(liEl);
-  //
-  //     document.getElementById('listButton').removeEventListener('click', showList);
-  //   }
-  // }
