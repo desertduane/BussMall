@@ -1,6 +1,5 @@
 'use strict'
 
-
 function Image(number) {
   this.name = number;
   this.source = 'images/' + number + '.jpg';
@@ -14,7 +13,6 @@ Image.allNames = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum'
 
 var clicks = [];
 var titles = [];
-
 var previouslyShown = [];
 
 for(var i = 0; i < Image.allNames.length; i++) {
@@ -71,8 +69,6 @@ function displayImages() {
   previouslyShown = numbers;
 }
 
-
-
 function handleClick(e) {
   Image.totalClicks += 1;
   console.log(Image.totalClicks, 'total clicks');
@@ -84,15 +80,24 @@ function handleClick(e) {
     }
   }
 
+  function showList(){
+    var ulEl = document.getElementById('thelist');
+    for(var i = 0; i < Image.all.length; i++){
+      var liEl = document.createElement('li');
+      liEl.textContent = Image.all[i].name + ' was shown ' + Image.all[i].timesShown + ' times and was clicked ' + Image.all[i].timesClicked + ' times.';
+      ulEl.appendChild(liEl);
+
+      document.getElementById('listButton').removeEventListener('click', showList);
+    }
+  }
   displayImages();
-  if(Image.totalClicks === 5) {
+  if(Image.totalClicks === 25) {
 
     Image.container.removeEventListener('click', handleClick);
-    // showList();
+    showList();
     return drawChart();
   }
 }
-
 
 var data = {
   labels: titles,
@@ -144,51 +149,37 @@ var data = {
         'purple'
       ]
     }]
-  };
+};
 
-  function drawChart() {
-    var ctx = document.getElementById('mallChart').getContext('2d');
-    mallChart = new Chart(ctx,{
-      type: 'horizontalBar',
-      data: data,
-      options: {
-        title: {
-          display: true,
-          text: 'Product Popularity'
-        },
-        legend: {
-          display: false,
-          responsive: false,
-          animation: {
-            duration: 600,
-            easing: 'easeOutBounce'
-          }
-        }
+function drawChart() {
+  var ctx = document.getElementById('mallChart').getContext('2d');
+  mallChart = new Chart(ctx,{
+    type: 'horizontalBar',
+    data: data,
+    options: {
+      title: {
+        display: true,
+        text: 'Product Popularity'
       },
-      scales: {
-        yAxes: [{
-          ticks: {
-            max: 10,
-            min: 0,
-            stepSize: 1.0
-          }
-        }]
+      legend: {
+        display: false,
+        responsive: false,
+        animation: {
+          duration: 600,
+          easing: 'easeOutBounce'
+        }
       }
-    });
-  }
-  Image.container.addEventListener('click', handleClick);
-  displayImages();
-
-
-
-  // function showList(){
-  //   var ulEl = document.getElementById('thelist');
-  //   for(var i = 0; i < Image.all.length; i++){
-  //
-  //     var liEl = document.createElement('li');
-  //     liEl.textContent = Image.all[i].name + ' was shown ' + Image.all[i].timesShown + ' times and was clicked ' + Image.all[i].timesClicked + ' times.';
-  //     ulEl.appendChild(liEl);
-  //
-  //     document.getElementById('listButton').removeEventListener('click', showList);
-  //   }
-  // }
+    },
+    scales: {
+      yAxes: [{
+        ticks: {
+          max: 10,
+          min: 0,
+          stepSize: 1.0
+        }
+      }]
+    }
+  });
+}
+Image.container.addEventListener('click', handleClick);
+displayImages();
